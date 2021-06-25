@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Form, Label, H1, Input, Button } from "./Style";
 
 const Register = () => {
   const [Login, setLogin] = useState("");
@@ -20,26 +21,30 @@ const Register = () => {
   };
 
   return (
-    <form onSubmit={handleOnSubmit}>
-      <label>
-        <h1>Rejestracja</h1>
-        <p>Login</p>
-        <input
-          type="text"
-          name="login"
-          onChange={handleOnChange}
-          value={Login}
-        />
-        <p>Hasło</p>
-        <input
-          type="text"
-          name="password"
-          onChange={handleOnChange}
-          value={Password}
-        />
-        <button>Wyślij</button>
-      </label>
-    </form>
+    <Form onSubmit={handleOnSubmit}>
+      <Label>
+        <H1>Rejestracja</H1>
+        <div>
+          <h2>Login</h2>
+          <Input
+            type="text"
+            name="login"
+            onChange={handleOnChange}
+            value={Login}
+          />
+        </div>
+        <div>
+          <h2>Hasło</h2>
+          <Input
+            type="text"
+            name="password"
+            onChange={handleOnChange}
+            value={Password}
+          />
+        </div>
+        <Button>Wyślij</Button>
+      </Label>
+    </Form>
   );
 };
 

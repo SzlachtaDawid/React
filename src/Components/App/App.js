@@ -1,15 +1,14 @@
-import Register from "../Register/Register";
-import { Container, Background } from "./Style";
+import { Container, ParticlesGround, RegisterComp } from "./Style";
 
 function App() {
   return (
     <Container>
-      <Register />
-      <Background
+      <RegisterComp />
+      <ParticlesGround
         params={{
           particles: {
             number: {
-              value: 100,
+              value: 150,
               density: {
                 enable: true,
                 value_area: 1000,
@@ -17,10 +16,10 @@ function App() {
             },
             line_linked: {
               enable: true,
-              opacity: 0.1,
+              opacity: 0.2,
             },
             move: {
-              speed: 0.5,
+              speed: 1,
             },
             size: {
               value: 0,
