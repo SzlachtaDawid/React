@@ -1,9 +1,12 @@
 import { Container, ParticlesGround, RegisterComp } from "./Style";
+import { AuthProvider } from "../../Contexts/AuthContext";
 
 function App() {
   return (
     <Container>
-      <RegisterComp />
+      <AuthProvider>
+        <RegisterComp />
+      </AuthProvider>
       <ParticlesGround
         params={{
           particles: {

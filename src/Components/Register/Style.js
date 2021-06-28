@@ -18,22 +18,36 @@ export const H1 = styled.h1`
 `;
 
 export const Input = styled.input`
-  background-color: rgba(255, 255, 255, 0.253);
+  font-size: 20px;
+
   border: none;
   border-radius: 10px;
-  font-size: 20px;
+  padding: 2px 10px;
+
   color: #edf2f4;
+  background-color: rgba(255, 255, 255, 0.253);
+
+  &:focus {
+    background-color: rgba(0, 255, 42, 0.432);
+    border: none;
+    outline: none;
+  }
 `;
 
 export const Button = styled.button`
-  padding: 5px;
+  font-size: 20px;
+
   width: 30%;
-  background-color: rgba(255, 255, 255, 0.253);
   border: none;
   border-radius: 10px;
-  font-size: 20px;
+  padding: 5px;
+
   color: #edf2f4;
+  background-color: rgba(255, 255, 255, 0.253);
+
   transition: 0.3s;
+  cursor: pointer;
+
   &:hover {
     background-color: rgba(0, 255, 42, 0.432);
   }
