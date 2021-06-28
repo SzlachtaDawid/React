@@ -1,3 +1,4 @@
+import React from "react";
 import { Container, ParticlesGround, RegisterComp } from "./Style";
 import { AuthProvider } from "../../Contexts/AuthContext";
 
