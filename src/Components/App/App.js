@@ -1,13 +1,25 @@
 import React from "react";
-import { Container, ParticlesGround, RegisterComp } from "./Style";
+import { Container, ParticlesGround, SignUpComp } from "./Style";
 import { AuthProvider } from "../../Contexts/AuthContext";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import DashBoard from "../DashBoard/DashBoard";
+import Login from "../Login/Login";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import ForgotPassword from "../ForgotPassword/ForgotPassword";
 
 function App() {
   return (
     <Container>
-      <AuthProvider>
-        <RegisterComp />
-      </AuthProvider>
+      <Router>
+        <AuthProvider>
+          <Switch>
+            <PrivateRoute exact path="/" component={DashBoard} />
+            <Route path="/signup" component={SignUpComp} />
+            <Route path="/login" component={Login} />
+            <Route path="/forgot-password" component={ForgotPassword} />
+          </Switch>
+        </AuthProvider>
+      </Router>
       <ParticlesGround
         params={{
           particles: {
