@@ -1,7 +1,17 @@
 import React, { useState } from "react";
-import { Form, Label, H1, Input, Button } from "./Style";
 import { useAuth } from "../../Contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
+import {
+  Form,
+  Label,
+  H1,
+  Input,
+  Button,
+  Option,
+  H2,
+  Container,
+} from "../GlobalStyle/LogAndSignStyle";
+import ParticlesComp from "../GlobalStyle/ParticlesComp";
 
 const Login = () => {
   const [Email, setEmail] = useState("");
@@ -38,39 +48,44 @@ const Login = () => {
   }
 
   return (
-    <Form onSubmit={handleOnSubmit}>
-      <Label>
-        <H1>Log In</H1>
-        {error && "problem"}
-        <div>
-          <h2>Email</h2>
-          <Input
-            type="email"
-            name="email"
-            onChange={handleOnChange}
-            value={Email}
-          />
-        </div>
-        <div>
-          <h2>Password</h2>
-          <Input
-            type="password"
-            name="password"
-            onChange={handleOnChange}
-            value={Password}
-          />
-        </div>
-        <Button disabled={loading} type="submit">
-          Log In
-        </Button>
-        <div>
-          <Link to="/forgot-password">Forgot Password ?</Link>
-        </div>
-        <div>
-          Need an account ? <Link to="/signup">Sign Up</Link>
-        </div>
-      </Label>
-    </Form>
+    <Container>
+      <ParticlesComp />
+      <Form onSubmit={handleOnSubmit}>
+        <Label>
+          <H1>Log In</H1>
+          {error && <p>The email or password you entered was invalid.</p>}
+          <div>
+            <H2>Email</H2>
+            <Input
+              type="email"
+              name="email"
+              onChange={handleOnChange}
+              value={Email}
+            />
+          </div>
+          <div>
+            <H2>Password</H2>
+            <Input
+              type="password"
+              name="password"
+              onChange={handleOnChange}
+              value={Password}
+            />
+          </div>
+          <Button disabled={loading} type="submit">
+            Log In
+          </Button>
+          <div>
+            <Option>
+              <Link to="/forgot-password">Forgot Password ?</Link>
+            </Option>
+            <Option>
+              Need an account ? <Link to="/signup">Sign Up</Link>
+            </Option>
+          </div>
+        </Label>
+      </Form>
+    </Container>
   );
 };
 

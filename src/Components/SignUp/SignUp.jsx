@@ -1,5 +1,14 @@
 import React, { useState } from "react";
-import { Form, Label, H1, Input, Button } from "./Style";
+import {
+  Form,
+  Label,
+  H1,
+  H2,
+  Input,
+  Button,
+  Container,
+} from "../GlobalStyle/LogAndSignStyle";
+import ParticlesComp from "../GlobalStyle/ParticlesComp";
 import { useAuth } from "../../Contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
 
@@ -46,45 +55,49 @@ const SignUp = () => {
   }
 
   return (
-    <Form onSubmit={handleOnSubmit}>
-      <Label>
-        <H1>Sign Up</H1>
-        {error && "problem"}
-        <div>
-          <h2>Email</h2>
-          <Input
-            type="email"
-            name="email"
-            onChange={handleOnChange}
-            value={Email}
-          />
-        </div>
-        <div>
-          <h2>Password</h2>
-          <Input
-            type="password"
-            name="password"
-            onChange={handleOnChange}
-            value={Password}
-          />
-        </div>
-        <div>
-          <h2>Password Confirm</h2>
-          <Input
-            type="password"
-            name="passwordConfirm"
-            onChange={handleOnChange}
-            value={PasswordConfirm}
-          />
-        </div>
-        <Button disabled={loading} type="submit">
-          Sign Up
-        </Button>
-        <div>
-          Already have an accout ? <Link to="/login">Log In</Link>
-        </div>
-      </Label>
-    </Form>
+    <Container>
+      <ParticlesComp />
+      <Form onSubmit={handleOnSubmit}>
+        <Label>
+          <H1>Sign Up</H1>
+          {error &&
+            "The email or password/confirm password you entered was invalid."}
+          <div>
+            <H2>Email</H2>
+            <Input
+              type="email"
+              name="email"
+              onChange={handleOnChange}
+              value={Email}
+            />
+          </div>
+          <div>
+            <H2>Password</H2>
+            <Input
+              type="password"
+              name="password"
+              onChange={handleOnChange}
+              value={Password}
+            />
+          </div>
+          <div>
+            <H2>Password Confirm</H2>
+            <Input
+              type="password"
+              name="passwordConfirm"
+              onChange={handleOnChange}
+              value={PasswordConfirm}
+            />
+          </div>
+          <Button disabled={loading} type="submit">
+            Sign Up
+          </Button>
+          <div>
+            Already have an accout ? <Link to="/login">Log In</Link>
+          </div>
+        </Label>
+      </Form>
+    </Container>
   );
 };
 

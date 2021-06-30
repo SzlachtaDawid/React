@@ -31,7 +31,6 @@ export function AuthProvider({ children }) {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUse(user);
       setLoading(false);
-      console.log("dsadsadas");
     });
     return unsubscribe;
   }, []);

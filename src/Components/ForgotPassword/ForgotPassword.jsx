@@ -1,5 +1,15 @@
 import React, { useState } from "react";
-import { Form, Label, H1, Input, Button } from "./Style";
+import {
+  Form,
+  Label,
+  H1,
+  H2,
+  Input,
+  Button,
+  Option,
+  Container,
+} from "../GlobalStyle/LogAndSignStyle";
+import ParticlesComp from "../GlobalStyle/ParticlesComp";
 import { useAuth } from "../../Contexts/AuthContext";
 import { Link } from "react-router-dom";
 
@@ -25,7 +35,7 @@ const ForgotPassword = () => {
       setError("");
       setLoading(true);
       await resetPassword(Email);
-      setMessage("Password Reset. Let's try Log In");
+      setMessage("Check your inbox email for further instructions");
     } catch {
       setError("Failed to reset password");
     }
@@ -35,31 +45,36 @@ const ForgotPassword = () => {
   }
 
   return (
-    <Form onSubmit={handleOnSubmit}>
-      <Label>
-        <H1>Password Reset</H1>
-        {error && "problem"}
-        {message && <p>{message}</p>}
-        <div>
-          <h2>Email</h2>
-          <Input
-            type="email"
-            name="email"
-            onChange={handleOnChange}
-            value={Email}
-          />
-        </div>
-        <Button disabled={loading} type="submit">
-          Reset Password
-        </Button>
-        <div>
-          <Link to="/login">Login</Link>
-        </div>
-        <div>
-          Need an account ? <Link to="/signup">Sign Up</Link>
-        </div>
-      </Label>
-    </Form>
+    <Container>
+      <ParticlesComp />
+      <Form onSubmit={handleOnSubmit}>
+        <Label>
+          <H1>Password Reset</H1>
+          {error && "problem"}
+          {message && <p>{message}</p>}
+          <div>
+            <H2>Email</H2>
+            <Input
+              type="email"
+              name="email"
+              onChange={handleOnChange}
+              value={Email}
+            />
+          </div>
+          <Button disabled={loading} type="submit">
+            Send
+          </Button>
+          <div>
+            <Option>
+              <Link to="/login">Login</Link>
+            </Option>
+            <Option>
+              Need an account ? <Link to="/signup">Sign Up</Link>
+            </Option>
+          </div>
+        </Label>
+      </Form>
+    </Container>
   );
 };
 
