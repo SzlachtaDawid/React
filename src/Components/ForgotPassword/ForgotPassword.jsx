@@ -8,6 +8,7 @@ import {
   Button,
   Option,
   Container,
+  Background,
 } from "../GlobalStyle/LogAndSignStyle";
 import ParticlesComp from "../GlobalStyle/ParticlesComp";
 import { useAuth } from "../../Contexts/AuthContext";
@@ -45,36 +46,38 @@ const ForgotPassword = () => {
   }
 
   return (
-    <Container>
-      <ParticlesComp />
-      <Form onSubmit={handleOnSubmit}>
-        <Label>
-          <H1>Password Reset</H1>
-          {error && "problem"}
-          {message && <p>{message}</p>}
-          <div>
-            <H2>Email</H2>
-            <Input
-              type="email"
-              name="email"
-              onChange={handleOnChange}
-              value={Email}
-            />
-          </div>
-          <Button disabled={loading} type="submit">
-            Send
-          </Button>
-          <div>
-            <Option>
-              <Link to="/login">Login</Link>
-            </Option>
-            <Option>
-              Need an account ? <Link to="/signup">Sign Up</Link>
-            </Option>
-          </div>
-        </Label>
-      </Form>
-    </Container>
+    <Background>
+      <Container>
+        <ParticlesComp />
+        <Form onSubmit={handleOnSubmit}>
+          <Label>
+            <H1>Password Reset</H1>
+            {error && "problem"}
+            {message && <p>{message}</p>}
+            <div>
+              <H2>Email</H2>
+              <Input
+                type="email"
+                name="email"
+                onChange={handleOnChange}
+                value={Email}
+              />
+            </div>
+            <Button disabled={loading} type="submit">
+              Send
+            </Button>
+            <div>
+              <Option>
+                <Link to="/login">Login</Link>
+              </Option>
+              <Option>
+                Need an account ? <Link to="/signup">Sign Up</Link>
+              </Option>
+            </div>
+          </Label>
+        </Form>
+      </Container>
+    </Background>
   );
 };
 

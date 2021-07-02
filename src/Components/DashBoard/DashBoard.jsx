@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useAuth } from "../../Contexts/AuthContext";
+import { useSpring } from "react-spring";
 import { useHistory } from "react-router-dom";
 import {
   Button,
@@ -8,17 +9,25 @@ import {
   Moon,
   Mountains,
   Stars,
-  H1,
   H2,
   ContainerText,
+  ContainerApp,
+  Img,
+  Sun,
 } from "./Style";
 import stars from "../../zdj/stars.png";
 import moon from "../../zdj/moon.png";
 import mountains from "../../zdj/mountains_front.png";
+import cloudy from "../../zdj/cloudy.png";
+import checklist from "../../zdj/checklist.png";
+import virus from "../../zdj/virus.png";
+import sun from "../../zdj/sunn.png";
+import mountainsDay from "../../zdj/mountains_front_day.png";
 
 const DashBoard = () => {
   const [error, setError] = useState("");
   const { currentUser, logout } = useAuth();
+  const [theme, setTheme] = useState(true);
   const history = useHistory();
 
   async function handleLogout() {
@@ -31,18 +40,86 @@ const DashBoard = () => {
     }
   }
 
+  function handleTheme() {
+    setTheme(!theme);
+  }
+
+  const starsAnimation = useSpring({
+    to: { opacity: 1, marginTop: "0px" },
+    from: { opacity: 0, marginTop: "-200px" },
+    config: { duration: 300 },
+    delay: 200,
+  });
+  const moonAnimation = useSpring({
+    to: { opacity: 1, marginTop: "0px" },
+    from: { opacity: 0, marginTop: "-200px" },
+    config: { duration: 300 },
+    delay: 400,
+  });
+  const mountainsAnimation = useSpring({
+    to: { opacity: 1, marginBottom: "0px" },
+    from: { opacity: 0, marginBottom: "-400px" },
+    config: { duration: 400 },
+    delay: 600,
+  });
+  const textAnimation = useSpring({
+    to: { opacity: 1, marginBottom: "0px" },
+    from: { opacity: 0, marginBottom: "-400px" },
+    config: { duration: 400 },
+    delay: 1000,
+  });
+
+  const testAnimation = useSpring({
+    to: { opacity: 1 },
+    from: { opacity: 0 },
+    config: { duration: 400 },
+    delay: 100,
+  });
+
   return (
     <DashboardContainer>
       <Section>
-        <Stars src={stars} alt="stars" id="stars" />
-        <Moon src={moon} alt="moon" id="moon" />
+        {theme && <Stars src={stars} alt="stars" style={starsAnimation} />}
+        {theme ? (
+          <Moon
+            src={moon}
+            alt="moon"
+            style={moonAnimation}
+            onClick={handleTheme}
+          />
+        ) : (
+          <Sun
+            src={sun}
+            alt="sun"
+            style={testAnimation}
+            onClick={handleTheme}
+          />
+        )}
+        <ContainerApp>
+          <Img src={checklist} alt="checklist" />
+          <Img src={cloudy} alt="cloudy" />
+          <Img src={virus} alt="virus" />
+        </ContainerApp>
         <ContainerText>
-          <H1>Welcome</H1>
           {error && "error"}
-          <H2>{currentUser.email}</H2>
-          <Button onClick={handleLogout}>Log Out</Button>
+          <Button onClick={handleLogout} style={textAnimation}>
+            Log Out
+          </Button>
+          <H2 style={textAnimation}>{currentUser.email}</H2>
         </ContainerText>
-        <Mountains src={mountains} alt="mountains" id="mountains" />
+        {theme ? (
+          <Mountains
+            src={mountains}
+            alt="mountains"
+            style={mountainsAnimation}
+          />
+        ) : (
+          <Mountains
+            src={mountainsDay}
+            alt="mountains"
+            style={mountainsAnimation}
+          />
+        )}
       </Section>
     </DashboardContainer>
   );

@@ -81,8 +81,6 @@ z-index: 1;
 
 border: 1px solid white;
 border-radius: 10px;
-background-color: #4158D0;
-background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
 `
 export const ParticlesGround = styled(ParticlesComp)`
 position: absolute;
@@ -94,5 +92,13 @@ height: 100%;
 
 z-index: -1;
 `
+export const Background = styled.div`
+width: 100%;
+height: 100vh;
+background-color: black;
+color: #edf2f4;
+background-image: linear-gradient(#2b1055, #7597de);
+`
+
 
 

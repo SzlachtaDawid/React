@@ -7,6 +7,7 @@ import {
   Input,
   Button,
   Container,
+  Background,
 } from "../GlobalStyle/LogAndSignStyle";
 import ParticlesComp from "../GlobalStyle/ParticlesComp";
 import { useAuth } from "../../Contexts/AuthContext";
@@ -55,49 +56,51 @@ const SignUp = () => {
   }
 
   return (
-    <Container>
-      <ParticlesComp />
-      <Form onSubmit={handleOnSubmit}>
-        <Label>
-          <H1>Sign Up</H1>
-          {error &&
-            "The email or password/confirm password you entered was invalid."}
-          <div>
-            <H2>Email</H2>
-            <Input
-              type="email"
-              name="email"
-              onChange={handleOnChange}
-              value={Email}
-            />
-          </div>
-          <div>
-            <H2>Password</H2>
-            <Input
-              type="password"
-              name="password"
-              onChange={handleOnChange}
-              value={Password}
-            />
-          </div>
-          <div>
-            <H2>Password Confirm</H2>
-            <Input
-              type="password"
-              name="passwordConfirm"
-              onChange={handleOnChange}
-              value={PasswordConfirm}
-            />
-          </div>
-          <Button disabled={loading} type="submit">
-            Sign Up
-          </Button>
-          <div>
-            Already have an accout ? <Link to="/login">Log In</Link>
-          </div>
-        </Label>
-      </Form>
-    </Container>
+    <Background>
+      <Container>
+        <ParticlesComp />
+        <Form onSubmit={handleOnSubmit}>
+          <Label>
+            <H1>Sign Up</H1>
+            {error &&
+              "The email or password/confirm password you entered was invalid."}
+            <div>
+              <H2>Email</H2>
+              <Input
+                type="email"
+                name="email"
+                onChange={handleOnChange}
+                value={Email}
+              />
+            </div>
+            <div>
+              <H2>Password</H2>
+              <Input
+                type="password"
+                name="password"
+                onChange={handleOnChange}
+                value={Password}
+              />
+            </div>
+            <div>
+              <H2>Password Confirm</H2>
+              <Input
+                type="password"
+                name="passwordConfirm"
+                onChange={handleOnChange}
+                value={PasswordConfirm}
+              />
+            </div>
+            <Button disabled={loading} type="submit">
+              Sign Up
+            </Button>
+            <div>
+              Already have an accout ? <Link to="/login">Log In</Link>
+            </div>
+          </Label>
+        </Form>
+      </Container>
+    </Background>
   );
 };
 
