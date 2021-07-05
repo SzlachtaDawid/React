@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { useAuth } from "../../Contexts/AuthContext";
 import { useSpring } from "react-spring";
 import { useHistory } from "react-router-dom";
@@ -14,6 +15,7 @@ import {
   ContainerApp,
   Img,
   Sun,
+  P,
 } from "./Style";
 import stars from "../../zdj/stars.png";
 import moon from "../../zdj/moon.png";
@@ -69,11 +71,11 @@ const DashBoard = () => {
     delay: 1000,
   });
 
-  const testAnimation = useSpring({
+  const iconAnimation = useSpring({
     to: { opacity: 1 },
     from: { opacity: 0 },
-    config: { duration: 400 },
-    delay: 100,
+    config: { duration: 600 },
+    delay: 1000,
   });
 
   return (
@@ -88,17 +90,14 @@ const DashBoard = () => {
             onClick={handleTheme}
           />
         ) : (
-          <Sun
-            src={sun}
-            alt="sun"
-            style={testAnimation}
-            onClick={handleTheme}
-          />
+          <Sun src={sun} alt="sun" onClick={handleTheme} />
         )}
         <ContainerApp>
-          <Img src={checklist} alt="checklist" />
-          <Img src={cloudy} alt="cloudy" />
-          <Img src={virus} alt="virus" />
+          <Img src={checklist} alt="checklist" style={iconAnimation} />
+          <Link style={iconAnimation} to="/weather">
+            <Img src={cloudy} alt="cloudy" style={iconAnimation} />
+          </Link>
+          <Img src={virus} alt="virus" style={iconAnimation} />
         </ContainerApp>
         <ContainerText>
           {error && "error"}
@@ -120,6 +119,7 @@ const DashBoard = () => {
             style={mountainsAnimation}
           />
         )}
+        <P>click on the background to change the time of day</P>
       </Section>
     </DashboardContainer>
   );
