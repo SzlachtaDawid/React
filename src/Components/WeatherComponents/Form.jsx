@@ -1,3 +1,5 @@
+import { Form, Input, Button } from "./Style";
+
 const Weather = (props) => {
   function handleChange(e) {
     props.onChange(e.target.value);
@@ -6,15 +8,15 @@ const Weather = (props) => {
     props.onSubmit(e);
   }
   return (
-    <form onSubmit={handleSubmit}>
-      <input
+    <Form onSubmit={handleSubmit}>
+      <Input
         type="text"
         value={props.value}
         onChange={handleChange}
         placeholder="City"
       />
-      <button>Search</button>
-    </form>
+      <Button>Search</Button>
+    </Form>
   );
 };
 
