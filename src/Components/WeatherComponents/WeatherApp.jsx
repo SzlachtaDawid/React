@@ -1,7 +1,7 @@
 import Weather from "./Weather";
 import Form from "./Form";
 import { useState } from "react";
-import { ContainerApp, Back } from "./Style";
+import { ContainerApp, Back, ContainerBackGround } from "./Style";
 
 import clear from "../../zdj/clear.jpg";
 import clearNight from "../../zdj/clearnight.jpg";
@@ -11,6 +11,7 @@ import mist from "../../zdj/mist.jpg";
 import rain from "../../zdj/rain.jpg";
 import snow from "../../zdj/snow.jpg";
 import storm from "../../zdj/storm.jpg";
+import backgroundImage from "../../zdj/weatherbackground.jpg";
 
 const WeatherApp = () => {
   const [city, setCity] = useState("");
@@ -74,6 +75,9 @@ const WeatherApp = () => {
     case "Fog":
       backImage = mist;
       break;
+    case "Mist":
+      backImage = mist;
+      break;
     case "Rain":
       backImage = rain;
       break;
@@ -84,7 +88,7 @@ const WeatherApp = () => {
       backImage = storm;
       break;
     default:
-      console.log("błąd");
+      backImage = backgroundImage;
   }
 
   let background = {
@@ -93,7 +97,8 @@ const WeatherApp = () => {
 
   return (
     <>
-      <ContainerApp style={background}>
+      <ContainerBackGround style={background}> </ContainerBackGround>
+      <ContainerApp>
         <Form
           value={city}
           onChange={handleInputChange}

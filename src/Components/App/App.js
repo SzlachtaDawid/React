@@ -6,7 +6,7 @@ import DashBoard from "../DashBoard/DashBoard";
 import Login from "../Login/Login";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import ForgotPassword from "../ForgotPassword/ForgotPassword";
-import WeatherApp from '../WeatherComponents/WeatherApp'
+import WeatherApp from "../WeatherComponents/WeatherApp";
 
 function App() {
   return (
