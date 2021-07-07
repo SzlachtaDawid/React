@@ -93,7 +93,9 @@ const DashBoard = () => {
           <Sun src={sun} alt="sun" onClick={handleTheme} />
         )}
         <ContainerApp>
-          <Img src={checklist} alt="checklist" style={iconAnimation} />
+          <Link style={iconAnimation} to="/todo">
+            <Img src={checklist} alt="checklist" style={iconAnimation} />
+          </Link>
           <Link style={iconAnimation} to="/weather">
             <Img src={cloudy} alt="cloudy" style={iconAnimation} />
           </Link>

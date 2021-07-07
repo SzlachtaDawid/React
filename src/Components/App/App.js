@@ -8,6 +8,7 @@ import Login from "../Login/Login";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import ForgotPassword from "../ForgotPassword/ForgotPassword";
 import WeatherApp from "../WeatherComponents/WeatherApp";
+import ToDoList from "../ToDoList/ToDoList";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
               atActive={{ opacity: 1 }}
             />
             <PrivateRoute path="/weather" component={WeatherApp} />
+            <PrivateRoute path="/todo" component={ToDoList} />
           </Switch>
         </AuthProvider>
       </Router>
