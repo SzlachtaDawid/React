@@ -1,12 +1,50 @@
 import styled from "styled-components";
 import ParticlesComp from "../GlobalStyle/ParticlesComp";
+import { device } from "./MediaQueries";
+
+export const Container = styled.div`
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%;
+  height: 100vh;
+
+  text-align: center;
+  z-index: 1;
+
+  border: 1px solid white;
+  border-radius: 2px;
+  @media ${device.tablet} {
+    height: 500px;
+    min-width: 600px;
+    border-radius: 10px;
+  }
+`;
+export const ParticlesGround = styled(ParticlesComp)`
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+
+  z-index: -1;
+`;
+export const Background = styled.div`
+  width: 100%;
+  height: 100vh;
+  background-color: black;
+  color: #edf2f4;
+  background-image: linear-gradient(#2b1055, #7597de);
+`;
 
 export const Form = styled.form`
-  height: 100%;
+  height: 60%;
   position: absolute;
-  top: 0;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
 `;
 
 export const Label = styled.label`
@@ -63,42 +101,6 @@ export const Button = styled.button`
   }
 `;
 
-
 export const Option = styled.div`
-    padding: 2px;
+  padding: 2px;
 `;
-
-export const Container = styled.div`
-position: absolute;
-left: 50%;
-top: 50%;
-transform: translate(-50%,-50%);
-min-width: 500px;
-height: 350px;
-
-text-align: center;
-z-index: 1;
-
-border: 1px solid white;
-border-radius: 10px;
-`
-export const ParticlesGround = styled(ParticlesComp)`
-position: absolute;
-left: 50%;
-top: 50%;
-transform: translate(-50%,-50%);
-width:100%;
-height: 100%;
-
-z-index: -1;
-`
-export const Background = styled.div`
-width: 100%;
-height: 100vh;
-background-color: black;
-color: #edf2f4;
-background-image: linear-gradient(#2b1055, #7597de);
-`
-
-
-

@@ -1,6 +1,7 @@
 import React from "react";
 import { AuthProvider } from "../../Contexts/AuthContext";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { AnimatedRoute } from "react-router-transition";
 import SignUp from "../SignUp/SignUp";
 import DashBoard from "../DashBoard/DashBoard";
 import Login from "../Login/Login";
@@ -15,10 +16,16 @@ function App() {
         <AuthProvider>
           <Switch>
             <PrivateRoute exact path="/" component={DashBoard} />
-            <Route path="/signup" component={SignUp} />
+            <AnimatedRoute path="/signup" component={SignUp} />
             <Route path="/login" component={Login} />
-            <Route path="/forgot-password" component={ForgotPassword} />
-            <Route path="/weather" component={WeatherApp} />
+            <Route
+              path="/forgot-password"
+              component={ForgotPassword}
+              atEnter={{ opacity: 0 }}
+              atLeave={{ opacity: 0 }}
+              atActive={{ opacity: 1 }}
+            />
+            <PrivateRoute path="/weather" component={WeatherApp} />
           </Switch>
         </AuthProvider>
       </Router>
