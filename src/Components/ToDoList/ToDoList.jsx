@@ -1,14 +1,13 @@
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
 import { db } from "../../firebase";
 import firebase from "firebase/app";
 
 import { useState } from "react";
 import { Background } from "./Style";
 import { useEffect } from "react";
+import Todo from "./ToDo";
 
 const ToDoList = () => {
-  const [todos, setTodos] = useState("");
+  const [todos, setTodos] = useState(null);
   const [todoInput, setTodoInput] = useState("");
 
   useEffect(() => {
@@ -16,12 +15,13 @@ const ToDoList = () => {
   }, []);
 
   function getTodos() {
+    console.log("pobieram");
     db.collection("todo").onSnapshot(function (querySnapshot) {
       setTodos(
         querySnapshot.docs.map((doc) => ({
           id: doc.id,
           todo: doc.data().todo,
-          inprogres: doc.data().inpogres,
+          inprogres: doc.data().inprogres,
         }))
       );
     });
@@ -41,19 +41,25 @@ const ToDoList = () => {
     <Background>
       <h1>ToDoList</h1>
       <form onSubmit={addToDo}>
-        <TextField
+        <input
           id="standard-basic"
-          label="Write a Todo"
+          label="Standard"
           value={todoInput}
           onChange={(e) => setTodoInput(e.target.value)}
         />
-        <Button type="submit" variant="contained">
-          Default
-        </Button>
+        <button type="submit" variant="contained">
+          Add Todo
+        </button>
       </form>
-      {todos.map((todo) => (
-        <p>{todo.todo}</p>
-      ))}
+      <ul>
+        {todos ? (
+          todos.map((todo) => (
+            <Todo id={todo.id} key={todo.id} todo={todo.todo} />
+          ))
+        ) : (
+          <p style={{ color: "red" }}>ładowanie danych</p>
+        )}
+      </ul>
     </Background>
   );
 };
