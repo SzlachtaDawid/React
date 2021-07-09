@@ -1,14 +1,17 @@
 import { db } from "../../firebase";
 import firebase from "firebase/app";
+import { useAuth } from "../../Contexts/AuthContext";
 
 import { useState } from "react";
-import { Background } from "./Style";
+import { Background, H1, AddToDo, Input, List } from "./Style";
 import { useEffect } from "react";
 import Todo from "./ToDo";
 
 const ToDoList = () => {
   const [todos, setTodos] = useState(null);
   const [todoInput, setTodoInput] = useState("");
+
+  const { currentUser } = useAuth();
 
   useEffect(() => {
     getTodos();
@@ -20,8 +23,9 @@ const ToDoList = () => {
       setTodos(
         querySnapshot.docs.map((doc) => ({
           id: doc.id,
+          user: doc.data().user,
           todo: doc.data().todo,
-          inprogres: doc.data().inprogres,
+          inprogress: doc.data().inprogress,
         }))
       );
     });
@@ -30,36 +34,47 @@ const ToDoList = () => {
   function addToDo(e) {
     e.preventDefault();
     db.collection("todo").add({
-      inpogres: true,
+      user: currentUser.email,
+      inprogress: true,
       timestamps: firebase.firestore.FieldValue.serverTimestamp(),
       todo: todoInput,
     });
     setTodoInput("");
   }
 
+  let filterTodos = null;
+
+  if (todos) {
+    filterTodos = todos.filter((todo) => todo.user === currentUser.email);
+  }
+
   return (
     <Background>
-      <h1>ToDoList</h1>
+      <H1>TODOLIST</H1>
       <form onSubmit={addToDo}>
-        <input
-          id="standard-basic"
-          label="Standard"
+        <Input
+          type="text"
           value={todoInput}
           onChange={(e) => setTodoInput(e.target.value)}
         />
-        <button type="submit" variant="contained">
+        <AddToDo type="submit" variant="contained">
           Add Todo
-        </button>
+        </AddToDo>
       </form>
-      <ul>
-        {todos ? (
-          todos.map((todo) => (
-            <Todo id={todo.id} key={todo.id} todo={todo.todo} />
+      <List>
+        {filterTodos ? (
+          filterTodos.map((todo) => (
+            <Todo
+              id={todo.id}
+              key={todo.id}
+              todo={todo.todo}
+              inprogress={todo.inprogress}
+            />
           ))
         ) : (
           <p style={{ color: "red" }}>ładowanie danych</p>
         )}
-      </ul>
+      </List>
     </Background>
   );
 };
