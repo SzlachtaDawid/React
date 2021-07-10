@@ -2,16 +2,17 @@ import styled from "styled-components";
 
 export const Background = styled.div`
   min-height: 600px;
-  width: 600px;
+  width: 500px;
 
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 
-  color: white;
-  background-color: rgba(0, 0, 0, 0.3);
-  box-shadow: 0px 0px 30px 17px rgba(0, 0, 0, 0.5);
+  color: #000000;
+  background: rgb(230, 230, 230);
+  background: linear-gradient(180deg, #afafaf 0%, #ffffff 50%, #ffffff 100%);
+  box-shadow: 10px 10px 30px 17px rgba(0, 0, 0, 0.5);
 
   text-align: center;
   border-radius: 20px;
@@ -20,26 +21,29 @@ export const Background = styled.div`
 export const H1 = styled.h1`
   font-size: 50px;
   margin: 15px;
+  letter-spacing: 5px;
 `;
 
 export const Input = styled.input`
-  font-size: 25px;
+  font-size: 20px;
+  padding: 5px;
 
-  margin: 5px;
-  border-radius: 7px;
+  margin: 10px 5px;
+  border-radius: 5px;
   border: none;
+  box-shadow: 4px 4px 5px 2px rgba(0, 0, 0, 0.5);
 `;
 
 export const AddToDo = styled.button`
-  font-size: 25px;
+  font-size: 20px;
 
-  color: white;
-  background-color: transparent;
-  box-shadow: 0px 0px 30px 17px rgba(0, 0, 0, 0.5);
+  color: #000000;
+  background-color: white;
+  box-shadow: 4px 4px 5px 2px rgba(0, 0, 0, 0.5);
 
   padding: 5px;
-  margin: 5px 20px;
-  border-radius: 7px;
+  margin: 10px 20px;
+  border-radius: 5px;
   border: none;
 
   cursor: pointer;
@@ -63,5 +67,35 @@ export const ToDoLi = styled.li`
 
 export const P = styled.p`
   margin-top: 5px;
-  font-size: 12px;
+  font-size: 10px;
+`;
+
+export const ToDoP = styled.p`
+  font-size: 20px;
+`;
+
+export const Progress = styled.button`
+  font-size: 15px;
+  width: 60px;
+
+  color: #000000;
+  background-color: white;
+
+  padding: 5px;
+  border: none;
+  border-right: 1px solid #949494;
+
+  cursor: pointer;
+`;
+export const Delete = styled.button`
+  font-size: 15px;
+  width: 30px;
+
+  color: black;
+  background-color: white;
+
+  padding: 5px;
+  border: none;
+
+  cursor: pointer;
 `;

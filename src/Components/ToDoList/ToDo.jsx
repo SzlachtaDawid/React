@@ -1,5 +1,5 @@
 import { db } from "../../firebase";
-import { ToDoLi, P } from "./Style";
+import { ToDoLi, P, ToDoP, Progress, Delete } from "./Style";
 
 const Todo = (todo) => {
   function toggleInProgress() {
@@ -12,17 +12,21 @@ const Todo = (todo) => {
     db.collection("todo").doc(todo.id).delete();
   }
 
+  const Active = {
+    borderBottom: "2px solid rgba(0, 255, 0, 0.692)",
+  };
+
   return (
-    <ToDoLi>
+    <ToDoLi style={todo.inprogress ? null : Active}>
       <div>
-        <strong>{todo.todo}</strong>
+        <ToDoP>{todo.todo}</ToDoP>
         <P>{todo.inprogress ? "In Progress" : "Complete"}</P>
       </div>
       <div>
-        <button onClick={toggleInProgress}>
+        <Progress onClick={toggleInProgress}>
           {todo.inprogress ? "Done" : "UnDone"}
-        </button>
-        <button onClick={deleteTodo}>X</button>
+        </Progress>
+        <Delete onClick={deleteTodo}>X</Delete>
       </div>
     </ToDoLi>
   );

@@ -50,7 +50,7 @@ const ToDoList = () => {
 
   return (
     <Background>
-      <H1>TODOLIST</H1>
+      <H1>TODO</H1>
       <form onSubmit={addToDo}>
         <Input
           type="text"
@@ -58,7 +58,7 @@ const ToDoList = () => {
           onChange={(e) => setTodoInput(e.target.value)}
         />
         <AddToDo type="submit" variant="contained">
-          Add Todo
+          ADD Task
         </AddToDo>
       </form>
       <List>
