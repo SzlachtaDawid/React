@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Loader from "react-loader-spinner";
 
 export const Background = styled.div`
   min-height: 600px;
@@ -80,6 +81,14 @@ export const ToDoLi = styled.li`
   padding: 5px;
   display: flex;
   justify-content: space-between;
+  transition: 2s;
+`;
+
+export const Loaderr = styled(Loader)`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 export const P = styled.p`

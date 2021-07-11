@@ -2,16 +2,16 @@ import { db } from "../../firebase";
 import firebase from "firebase/app";
 import { useAuth } from "../../Contexts/AuthContext";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import Loader from "react-loader-spinner";
 
 import { useState } from "react";
-import { Background, H1, AddToDo, Input, List, User } from "./Style";
+import { Background, H1, AddToDo, Input, List, User, Loaderr } from "./Style";
 import { useEffect } from "react";
 import Todo from "./ToDo";
 
 const ToDoList = () => {
   const [todos, setTodos] = useState(null);
   const [todoInput, setTodoInput] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const { currentUser } = useAuth();
 
@@ -58,6 +58,10 @@ const ToDoList = () => {
       return 0;
     }
     filterTodos.sort(compare);
+    console.log("filert");
+    setTimeout(() => {
+      setLoading(true);
+    }, 2000);
   }
 
   return (
@@ -74,7 +78,7 @@ const ToDoList = () => {
         </AddToDo>
       </form>
       <List>
-        {filterTodos ? (
+        {loading ? (
           filterTodos.map((todo) => (
             <Todo
               id={todo.id}
@@ -84,12 +88,12 @@ const ToDoList = () => {
             />
           ))
         ) : (
-          <Loader
-            type="Puff"
-            color="#00BFFF"
-            height={100}
-            width={100}
-            timeout={3000} //3 secs
+          <Loaderr
+            type="BallTriangle"
+            color="#414141"
+            height={150}
+            width={150}
+            timeout={3000}
           />
         )}
       </List>
