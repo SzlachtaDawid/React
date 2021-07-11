@@ -51,8 +51,25 @@ export const AddToDo = styled.button`
 
 export const List = styled.ul`
   text-align: left;
-  height: 100%;
+  max-height: 410px;
   list-style: none;
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #929292;
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: #7e7e7e;
+  }
+  &::-webkit-scrollbar-track {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: inset 7px 10px 12px 0px #f0f0f0;
+  }
 `;
 
 export const ToDoLi = styled.li`
@@ -98,4 +115,12 @@ export const Delete = styled.button`
   border: none;
 
   cursor: pointer;
+`;
+
+export const User = styled.p`
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
 `;

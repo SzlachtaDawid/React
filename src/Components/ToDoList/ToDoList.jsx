@@ -1,9 +1,11 @@
 import { db } from "../../firebase";
 import firebase from "firebase/app";
 import { useAuth } from "../../Contexts/AuthContext";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from "react-loader-spinner";
 
 import { useState } from "react";
-import { Background, H1, AddToDo, Input, List } from "./Style";
+import { Background, H1, AddToDo, Input, List, User } from "./Style";
 import { useEffect } from "react";
 import Todo from "./ToDo";
 
@@ -46,6 +48,16 @@ const ToDoList = () => {
 
   if (todos) {
     filterTodos = todos.filter((todo) => todo.user === currentUser.email);
+    function compare(a, b) {
+      if (a.inprogress > b.inprogress) {
+        return -1;
+      }
+      if (b.inprogress < a.inprogress) {
+        return 1;
+      }
+      return 0;
+    }
+    filterTodos.sort(compare);
   }
 
   return (
@@ -72,9 +84,16 @@ const ToDoList = () => {
             />
           ))
         ) : (
-          <p style={{ color: "red" }}>ładowanie danych</p>
+          <Loader
+            type="Puff"
+            color="#00BFFF"
+            height={100}
+            width={100}
+            timeout={3000} //3 secs
+          />
         )}
       </List>
+      <User>{currentUser.email}</User>
     </Background>
   );
 };
