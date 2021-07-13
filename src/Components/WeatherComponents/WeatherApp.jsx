@@ -3,16 +3,6 @@ import Form from "./Form";
 import { useState } from "react";
 import { ContainerApp, Back, ContainerBackGround } from "./Style";
 
-import clear from "../../zdj/clear.jpg";
-import clearNight from "../../zdj/clearnight.jpg";
-import clouds from "../../zdj/clouds.jpg";
-import fewClouds from "../../zdj/fewclouds.jpg";
-import mist from "../../zdj/mist.jpg";
-import rain from "../../zdj/rain.jpg";
-import snow from "../../zdj/snow.jpg";
-import storm from "../../zdj/storm.jpg";
-import backgroundImage from "../../zdj/weatherbackground.jpg";
-
 const WeatherApp = () => {
   const [city, setCity] = useState("");
   const [weather, setWeather] = useState({
@@ -23,7 +13,6 @@ const WeatherApp = () => {
     wind: "",
   });
   const [error, setError] = useState("");
-  const [image, setImage] = useState("");
 
   const handleInputChange = (newCity) => {
     setCity(newCity);
@@ -31,7 +20,7 @@ const WeatherApp = () => {
 
   const handleCitySubmit = (e) => {
     e.preventDefault();
-    const API = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=dad918f57c236b8e17313001ceedf748&units=metric`;
+    const API = `https://api.weatherbit.io/v2.0/forecast/daily?city=Warszawa&days=5&key=849171d010104e12b9fd7157862885cc`;
     fetch(API)
       .then((res) => {
         if (res.ok) {
@@ -41,63 +30,25 @@ const WeatherApp = () => {
       })
       .then((res) => res.json())
       .then((data) => {
-        const time = new Date().toLocaleDateString();
-        console.log(data);
+        console.log(data.data[0]);
         setError(false);
         setWeather({
-          date: time,
-          city: data.name,
-          weather: data.weather[0].main,
-          temp: data.main.temp,
-          wind: data.wind.speed,
+          date: data.data[0].datetime,
+          city: data.city_name,
+          weather: data.data[0].weather.description,
+          temp: data.data[0].temp,
+          wind: Math.floor(data.data[0].wind_spd),
         });
-        setImage(data.weather[0].main);
       })
       .catch((err) => {
         console.log(err);
         setError(true);
       });
   };
-  let backImage = null;
-  switch (image) {
-    case "Clear":
-      backImage = clear;
-      break;
-    case "ClearNight":
-      backImage = clearNight;
-      break;
-    case "Clouds":
-      backImage = clouds;
-      break;
-    case "FewClouds":
-      backImage = fewClouds;
-      break;
-    case "Fog":
-      backImage = mist;
-      break;
-    case "Mist":
-      backImage = mist;
-      break;
-    case "Rain":
-      backImage = rain;
-      break;
-    case "Snow":
-      backImage = snow;
-      break;
-    case "Storm":
-      backImage = storm;
-      break;
-    default:
-      backImage = backgroundImage;
-  }
-
-  let background = {
-    backgroundImage: "url(" + backImage + ")",
-  };
 
   return (
     <>
-      <ContainerBackGround style={background}> </ContainerBackGround>
+      <ContainerBackGround> </ContainerBackGround>
       <ContainerApp>
         <Form
           value={city}

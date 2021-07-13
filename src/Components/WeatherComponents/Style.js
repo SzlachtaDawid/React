@@ -1,23 +1,20 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { device } from "../GlobalStyle/MediaQueries";
+import backgroundImage from "../../zdj/weatherApp.jpg";
 
 // WeatherApp
 export const ContainerBackGround = styled.div`
   width: 100%;
   height: 100vh;
+  background-image: url(${backgroundImage});
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  filter: grayscale(85%);
+  filter: grayscale(70%) blur(2px) contrast(140%);
 `;
 
 export const ContainerApp = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-
-  transform: translate(-50%, -50%);
   border-radius: 60px;
   text-align: center;
 `;
@@ -42,6 +39,10 @@ export const Back = styled(Link)`
 // Weather
 
 export const ContainerCard = styled.div`
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   margin: 50px auto;
   font-size: 20px;
   width: 310px;
@@ -83,7 +84,10 @@ export const P = styled.p`
 // Form
 
 export const Form = styled.form`
-  margin: 10% 5px;
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
 `;
 
 export const Input = styled.input`
