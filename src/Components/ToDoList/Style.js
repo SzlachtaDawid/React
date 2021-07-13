@@ -1,22 +1,32 @@
 import styled from "styled-components";
 import Loader from "react-loader-spinner";
+import { device } from "../GlobalStyle/MediaQueries";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { animated } from "react-spring";
 
-export const Background = styled.div`
-  min-height: 600px;
-  width: 500px;
-
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+export const Background = styled(animated.div)`
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
 
   color: #000000;
   background: rgb(230, 230, 230);
-  background: linear-gradient(180deg, #afafaf 0%, #ffffff 50%, #ffffff 100%);
+  background: linear-gradient(180deg, #afafaf 0%, #ffffff 50%, #c5c5c5 100%);
   box-shadow: 10px 10px 30px 17px rgba(0, 0, 0, 0.5);
 
   text-align: center;
-  border-radius: 20px;
+
+  @media ${device.tablet} {
+    height: 700px;
+    width: 550px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    border-radius: 20px;
+  }
 `;
 
 export const H1 = styled.h1`
@@ -51,8 +61,9 @@ export const AddToDo = styled.button`
 `;
 
 export const List = styled.ul`
-  text-align: left;
   max-height: 410px;
+
+  text-align: left;
   list-style: none;
   overflow-y: auto;
   &::-webkit-scrollbar {
@@ -74,14 +85,21 @@ export const List = styled.ul`
 `;
 
 export const ToDoLi = styled.li`
-  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
-  font-size: 20px;
+  font-size: 18px;
+
   margin: 15px auto;
   padding: 5px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+
   display: flex;
   justify-content: space-between;
-  transition: 2s;
+
+  transition: 0.7s;
+
+  @media ${device.laptop} {
+    font-size: 20px;
+  }
 `;
 
 export const Loaderr = styled(Loader)`
@@ -93,11 +111,16 @@ export const Loaderr = styled(Loader)`
 
 export const P = styled.p`
   margin-top: 5px;
-  font-size: 10px;
+  font-size: 8px;
+
+  @media ${device.laptop} {
+    font-size: 10px;
+  }
 `;
 
-export const ToDoP = styled.p`
-  font-size: 20px;
+export const BtnContainer = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 export const Progress = styled.button`
@@ -113,6 +136,7 @@ export const Progress = styled.button`
 
   cursor: pointer;
 `;
+
 export const Delete = styled.button`
   font-size: 15px;
   width: 30px;
@@ -126,10 +150,26 @@ export const Delete = styled.button`
   cursor: pointer;
 `;
 
+export const Home = styled(FontAwesomeIcon)`
+  font-size: 30px;
+  color: #313131;
+
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+
+  cursor: pointer;
+
+  &:hover {
+    color: #1b921b;
+  }
+`;
+
 export const User = styled.p`
+  font-size: 12px;
+
   position: absolute;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 12px;
 `;

@@ -1,5 +1,5 @@
 import { db } from "../../firebase";
-import { ToDoLi, P, ToDoP, Progress, Delete } from "./Style";
+import { ToDoLi, P, Progress, Delete, BtnContainer } from "./Style";
 
 const Todo = (todo) => {
   function toggleInProgress() {
@@ -19,15 +19,15 @@ const Todo = (todo) => {
   return (
     <ToDoLi style={todo.inprogress ? null : Active}>
       <div>
-        <ToDoP>{todo.todo}</ToDoP>
+        <p>{todo.todo}</p>
         <P>{todo.inprogress ? "In Progress" : "Complete"}</P>
       </div>
-      <div>
+      <BtnContainer>
         <Progress onClick={toggleInProgress}>
           {todo.inprogress ? "Done" : "UnDone"}
         </Progress>
         <Delete onClick={deleteTodo}>X</Delete>
-      </div>
+      </BtnContainer>
     </ToDoLi>
   );
 };

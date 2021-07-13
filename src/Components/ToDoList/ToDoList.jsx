@@ -2,9 +2,21 @@ import { db } from "../../firebase";
 import firebase from "firebase/app";
 import { useAuth } from "../../Contexts/AuthContext";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
+import { useSpring } from "react-spring";
 
 import { useState } from "react";
-import { Background, H1, AddToDo, Input, List, User, Loaderr } from "./Style";
+import {
+  Background,
+  H1,
+  AddToDo,
+  Input,
+  List,
+  User,
+  Loaderr,
+  Home,
+} from "./Style";
 import { useEffect } from "react";
 import Todo from "./ToDo";
 
@@ -20,7 +32,6 @@ const ToDoList = () => {
   }, []);
 
   function getTodos() {
-    console.log("pobieram");
     db.collection("todo").onSnapshot(function (querySnapshot) {
       setTodos(
         querySnapshot.docs.map((doc) => ({
@@ -28,6 +39,7 @@ const ToDoList = () => {
           user: doc.data().user,
           todo: doc.data().todo,
           inprogress: doc.data().inprogress,
+          time: doc.data().time,
         }))
       );
     });
@@ -35,11 +47,14 @@ const ToDoList = () => {
 
   function addToDo(e) {
     e.preventDefault();
+    let time = new Date();
+    time = time.getTime();
     db.collection("todo").add({
       user: currentUser.email,
       inprogress: true,
       timestamps: firebase.firestore.FieldValue.serverTimestamp(),
       todo: todoInput,
+      time: time,
     });
     setTodoInput("");
   }
@@ -48,24 +63,32 @@ const ToDoList = () => {
 
   if (todos) {
     filterTodos = todos.filter((todo) => todo.user === currentUser.email);
+
     function compare(a, b) {
-      if (a.inprogress > b.inprogress) {
-        return -1;
+      if (a.inprogress !== b.inprogress) {
+        return a.inprogress ? -1 : 1;
       }
-      if (b.inprogress < a.inprogress) {
-        return 1;
+      if (a.time !== b.time) {
+        return b.time - a.time;
       }
       return 0;
     }
+
     filterTodos.sort(compare);
-    console.log("filert");
     setTimeout(() => {
       setLoading(true);
     }, 2000);
   }
 
+  const Opacity = useSpring({
+    to: { opacity: 1 },
+    from: { opacity: 0 },
+    config: { duration: 600 },
+    delay: 200,
+  });
+
   return (
-    <Background>
+    <Background style={Opacity}>
       <H1>TODO</H1>
       <form onSubmit={addToDo}>
         <Input
@@ -97,6 +120,9 @@ const ToDoList = () => {
           />
         )}
       </List>
+      <Link to="/">
+        <Home icon={faHome} />
+      </Link>
       <User>{currentUser.email}</User>
     </Background>
   );
