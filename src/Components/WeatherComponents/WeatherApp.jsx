@@ -1,7 +1,13 @@
 import Weather from "./Weather";
 import Form from "./Form";
 import { useState } from "react";
-import { ContainerApp, Back, ContainerBackGround } from "./Style";
+import {
+  ContainerApp,
+  Back,
+  ContainerBackGround,
+  NextDayContainer,
+  NextLi,
+} from "./Style";
 
 const WeatherApp = () => {
   const [city, setCity] = useState("");
@@ -12,6 +18,7 @@ const WeatherApp = () => {
     temp: "",
     wind: "",
   });
+  const [nextDayWeather, setNextDayWeather] = useState([]);
   const [error, setError] = useState("");
 
   const handleInputChange = (newCity) => {
@@ -30,7 +37,6 @@ const WeatherApp = () => {
       })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.data[0]);
         setError(false);
         setWeather({
           date: data.data[0].datetime,
@@ -39,6 +45,9 @@ const WeatherApp = () => {
           temp: data.data[0].temp,
           wind: Math.floor(data.data[0].wind_spd),
         });
+        const nextDays = data.data;
+        nextDays.shift();
+        setNextDayWeather(nextDays);
       })
       .catch((err) => {
         console.log(err);
@@ -56,6 +65,16 @@ const WeatherApp = () => {
           onSubmit={handleCitySubmit}
         ></Form>
         <Weather error={error} weather={weather}></Weather>
+        <NextDayContainer>
+          {nextDayWeather.map((day) => (
+            <NextLi>
+              {/* <p>{day.weather.description}</p> */}
+              <p>{day.temp}</p>
+              <p>{Math.floor(day.wind_spd)} m/s</p>
+              <p>{day.datetime}</p>
+            </NextLi>
+          ))}
+        </NextDayContainer>
       </ContainerApp>
       <Back to="/">Go Back</Back>
     </>

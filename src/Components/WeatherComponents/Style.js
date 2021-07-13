@@ -15,8 +15,20 @@ export const ContainerBackGround = styled.div`
 `;
 
 export const ContainerApp = styled.div`
-  border-radius: 60px;
   text-align: center;
+  width: 100%;
+  height: 100vh;
+
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  padding: 15px 2px 10px 2px;
+`;
+
+export const NextDayContainer = styled.ul`
+  display: flex;
+  justify-content: space-around;
 `;
 
 export const Back = styled(Link)`
@@ -39,10 +51,6 @@ export const Back = styled(Link)`
 // Weather
 
 export const ContainerCard = styled.div`
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
   margin: 50px auto;
   font-size: 20px;
   width: 310px;
@@ -80,14 +88,23 @@ export const Data = styled.div`
 export const P = styled.p`
   margin: 10px 5px;
 `;
+// Weather Next Days
+
+export const NextLi = styled.li`
+  border: 1px solid white;
+  border-radius: 10px;
+  list-style: none;
+  background-color: rgba(0, 0, 0, 0.3);
+  font-size: 15px;
+`;
 
 // Form
 
 export const Form = styled.form`
-  position: absolute;
+  /* position: absolute;
   top: 5%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%); */
 `;
 
 export const Input = styled.input`
