@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { device } from "../GlobalStyle/MediaQueries";
 import backgroundImage from "../../zdj/weatherApp.jpg";
+import NextDay from "./NextDay";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // WeatherApp
 export const ContainerBackGround = styled.div`
@@ -11,7 +13,7 @@ export const ContainerBackGround = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  filter: grayscale(70%) blur(2px) contrast(140%);
+  filter: grayscale(60%) contrast(130%);
 `;
 
 export const ContainerApp = styled.div`
@@ -22,6 +24,10 @@ export const ContainerApp = styled.div`
   position: absolute;
   left: 0;
   top: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 
   padding: 15px 2px 10px 2px;
 `;
@@ -51,7 +57,7 @@ export const Back = styled(Link)`
 // Weather
 
 export const ContainerCard = styled.div`
-  margin: 50px auto;
+  margin: 10px auto;
   font-size: 20px;
   width: 310px;
   display: flex;
@@ -63,7 +69,7 @@ export const ContainerCard = styled.div`
 
   @media ${device.tablet} {
     width: 550px;
-    font-size: 30px;
+    font-size: 25px;
   }
   @media ${device.laptop} {
     width: 750px;
@@ -74,10 +80,10 @@ export const H1 = styled.h1`
   font-size: 35px;
   margin: 15px 5px;
   @media ${device.tablet} {
-    font-size: 65px;
+    font-size: 55px;
   }
   @media ${device.laptop} {
-    font-size: 70px;
+    font-size: 65px;
   }
 `;
 
@@ -90,21 +96,27 @@ export const P = styled.p`
 `;
 // Weather Next Days
 
-export const NextLi = styled.li`
-  border: 1px solid white;
-  border-radius: 10px;
-  list-style: none;
-  background-color: rgba(0, 0, 0, 0.3);
-  font-size: 15px;
+export const NextDays = styled(NextDay)`
+  /* height: 100px;
+  margin-bottom: 10px; */
 `;
 
-// Form
-
-export const Form = styled.form`
-  /* position: absolute;
-  top: 5%;
-  left: 50%;
-  transform: translateX(-50%); */
+export const Img = styled.img`
+  width: 65px;
+  height: 65px;
+  @media ${device.tablet} {
+    width: 100px;
+    height: 100px;
+  }
+`;
+export const Li = styled.li`
+  list-style: none;
+  font-size: 15px;
+  padding: 5px 5px;
+  margin-bottom: 35px;
+  border: 1px solid white;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.3);
 `;
 
 export const Input = styled.input`
@@ -117,7 +129,7 @@ export const Input = styled.input`
   padding: 2px 10px;
 
   color: #edf2f4;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(92, 92, 92, 0.3);
 
   &:focus {
     background-color: rgba(0, 255, 42, 0.5);
@@ -145,7 +157,7 @@ export const Button = styled.button`
   margin: 10px auto;
 
   color: #edf2f4;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(77, 77, 77, 0.3);
 
   transition: 0.3s;
   cursor: pointer;
@@ -160,5 +172,20 @@ export const Button = styled.button`
   }
   @media ${device.laptop} {
     width: 250px;
+  }
+`;
+
+export const Home = styled(FontAwesomeIcon)`
+  font-size: 30px;
+  color: #999898;
+
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+
+  cursor: pointer;
+
+  &:hover {
+    color: #1b921b;
   }
 `;

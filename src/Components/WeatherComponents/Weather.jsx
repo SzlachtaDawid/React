@@ -1,7 +1,7 @@
 import { ContainerCard, H1, Data, P } from "./Style";
 
 const Weather = (props) => {
-  const { date, city, weather, temp, wind } = props.weather;
+  const { city, weather, temp, wind } = props.weather;
 
   let content = null;
 
@@ -11,15 +11,17 @@ const Weather = (props) => {
         <ContainerCard>
           <H1>{city}</H1>
           <Data>
-            <P>{date}</P>
+            <P>
+              <strong>Today</strong>
+            </P>
             <P>
               Weather: <strong>{weather}</strong>
             </P>
             <P>
-              Wind speed: <strong>{wind}</strong>
+              Wind speed: <strong>{wind} m/s</strong>
             </P>
             <P>
-              Temp: <strong>{Math.floor(temp)}</strong> C
+              Temp: <strong>{Math.floor(temp)}</strong> °C
             </P>
           </Data>
         </ContainerCard>

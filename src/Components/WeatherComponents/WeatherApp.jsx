@@ -1,12 +1,15 @@
 import Weather from "./Weather";
 import Form from "./Form";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import { faHome } from "@fortawesome/free-solid-svg-icons";
+
 import {
   ContainerApp,
-  Back,
+  Home,
   ContainerBackGround,
   NextDayContainer,
-  NextLi,
+  NextDays,
 } from "./Style";
 
 const WeatherApp = () => {
@@ -17,6 +20,7 @@ const WeatherApp = () => {
     weather: "",
     temp: "",
     wind: "",
+    icon: "",
   });
   const [nextDayWeather, setNextDayWeather] = useState([]);
   const [error, setError] = useState("");
@@ -27,7 +31,7 @@ const WeatherApp = () => {
 
   const handleCitySubmit = (e) => {
     e.preventDefault();
-    const API = `https://api.weatherbit.io/v2.0/forecast/daily?city=Warszawa&days=5&key=849171d010104e12b9fd7157862885cc`;
+    const API = `https://api.weatherbit.io/v2.0/forecast/daily?city=${city}&days=5&key=849171d010104e12b9fd7157862885cc`;
     fetch(API)
       .then((res) => {
         if (res.ok) {
@@ -42,6 +46,7 @@ const WeatherApp = () => {
           date: data.data[0].datetime,
           city: data.city_name,
           weather: data.data[0].weather.description,
+          icon: data.data[0].weather.code,
           temp: data.data[0].temp,
           wind: Math.floor(data.data[0].wind_spd),
         });
@@ -67,16 +72,18 @@ const WeatherApp = () => {
         <Weather error={error} weather={weather}></Weather>
         <NextDayContainer>
           {nextDayWeather.map((day) => (
-            <NextLi>
-              {/* <p>{day.weather.description}</p> */}
-              <p>{day.temp}</p>
-              <p>{Math.floor(day.wind_spd)} m/s</p>
-              <p>{day.datetime}</p>
-            </NextLi>
+            <NextDays
+              key={day.ts}
+              temp={day.temp}
+              icon={day.weather.code}
+              date={day.ts}
+            />
           ))}
         </NextDayContainer>
       </ContainerApp>
-      <Back to="/">Go Back</Back>
+      <Link to="/">
+        <Home icon={faHome} />
+      </Link>
     </>
   );
 };

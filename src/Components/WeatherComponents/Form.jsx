@@ -1,4 +1,4 @@
-import { Form, Input, Button } from "./Style";
+import { Input, Button } from "./Style";
 
 const Weather = (props) => {
   function handleChange(e) {
@@ -8,7 +8,7 @@ const Weather = (props) => {
     props.onSubmit(e);
   }
   return (
-    <Form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <Input
         type="text"
         value={props.value}
@@ -16,7 +16,7 @@ const Weather = (props) => {
         placeholder="City"
       />
       <Button>Search</Button>
-    </Form>
+    </form>
   );
 };
 
