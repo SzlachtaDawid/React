@@ -77,13 +77,14 @@ const WeatherApp = () => {
               temp={day.temp}
               icon={day.weather.code}
               date={day.ts}
+              error={error}
             />
           ))}
         </NextDayContainer>
+        <Link to="/">
+          <Home icon={faHome} />
+        </Link>
       </ContainerApp>
-      <Link to="/">
-        <Home icon={faHome} />
-      </Link>
     </>
   );
 };

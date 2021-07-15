@@ -29,7 +29,7 @@ const Weather = (props) => {
     );
   }
 
-  return <>{props.error ? <p>invalid City</p> : content}</>;
+  return <>{props.error ? <h1>invalid City</h1> : content}</>;
 };
 
 export default Weather;

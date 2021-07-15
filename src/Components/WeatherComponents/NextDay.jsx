@@ -1,3 +1,4 @@
+import c01d from "../../zdj/WeatherIcon/c01d.png";
 import c02d from "../../zdj/WeatherIcon/c02d.png";
 import r01d from "../../zdj/WeatherIcon/r01d.png";
 import s01d from "../../zdj/WeatherIcon/s01d.png";
@@ -8,9 +9,12 @@ import { Img, Li } from "./Style";
 const NextDay = (props) => {
   const time = new Date(props.date * 1000);
   const day = time.toString().slice(0, 3);
+  console.log(props.error);
 
   const Icon = () => {
     switch (props.icon) {
+      case 800:
+        return <Img className="icon" src={c01d} alt={"Clear Sky"} />;
       case 801:
         return <Img className="icon" src={c02d} alt={"cloudy"} />;
 
@@ -51,13 +55,18 @@ const NextDay = (props) => {
         return <Img className="icon" src={c02d} alt={"default"} />;
     }
   };
-  return (
-    <Li>
-      <h1>{day}</h1>
-      {Icon()}
-      <p>{props.temp}°C</p>
-    </Li>
-  );
-};
 
+  let content = null;
+
+  if (!props.error) {
+    content = (
+      <Li>
+        <h1>{day}</h1>
+        {Icon()}
+        <p>{props.temp}°C</p>
+      </Li>
+    );
+  }
+  return <>{props.error ? null : content}</>;
+};
 export default NextDay;

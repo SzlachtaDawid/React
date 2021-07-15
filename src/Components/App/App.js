@@ -9,6 +9,7 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import ForgotPassword from "../ForgotPassword/ForgotPassword";
 import WeatherApp from "../WeatherComponents/WeatherApp";
 import ToDoList from "../ToDoList/ToDoList";
+import ChatApp from "../ChatApp/Chat";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             />
             <PrivateRoute path="/weather" component={WeatherApp} />
             <PrivateRoute path="/todo" component={ToDoList} />
+            <PrivateRoute path="/chat" component={ChatApp} />
           </Switch>
         </AuthProvider>
       </Router>

@@ -30,6 +30,13 @@ export const ContainerApp = styled.div`
   justify-content: space-around;
 
   padding: 15px 2px 10px 2px;
+  @media ${device.laptop} {
+    max-width: 1024px;
+    max-height: 760px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
 `;
 
 export const NextDayContainer = styled.ul`
@@ -109,11 +116,11 @@ export const Img = styled.img`
     height: 100px;
   }
 `;
+
 export const Li = styled.li`
   list-style: none;
   font-size: 15px;
   padding: 5px 5px;
-  margin-bottom: 35px;
   border: 1px solid white;
   border-radius: 10px;
   background-color: rgba(0, 0, 0, 0.3);
@@ -177,7 +184,7 @@ export const Button = styled.button`
 
 export const Home = styled(FontAwesomeIcon)`
   font-size: 30px;
-  color: #999898;
+  color: #bdbdbd;
 
   position: absolute;
   right: 10px;

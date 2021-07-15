@@ -22,7 +22,7 @@ import moon from "../../zdj/moon.png";
 import mountains from "../../zdj/mountains_front.png";
 import cloudy from "../../zdj/cloudy.png";
 import checklist from "../../zdj/checklist.png";
-import virus from "../../zdj/virus.png";
+import chat from "../../zdj/chat.png";
 import sun from "../../zdj/sunn.png";
 import mountainsDay from "../../zdj/mountains_front_day.png";
 
@@ -99,7 +99,9 @@ const DashBoard = () => {
           <Link style={iconAnimation} to="/weather">
             <Img src={cloudy} alt="cloudy" style={iconAnimation} />
           </Link>
-          <Img src={virus} alt="virus" style={iconAnimation} />
+          <Link style={iconAnimation} to="/chat">
+            <Img src={chat} alt="chat" style={iconAnimation} />
+          </Link>
         </ContainerApp>
         <ContainerText>
           {error && "error"}
@@ -121,7 +123,7 @@ const DashBoard = () => {
             style={mountainsAnimation}
           />
         )}
-        <P>click on the background to change the time of day</P>
+        <P>click on the sun/moon to change the time of day</P>
       </Section>
     </DashboardContainer>
   );
